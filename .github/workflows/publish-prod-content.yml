@@ -18,4 +18,4 @@ jobs:
         env:
           PROD_PAT: ${{ secrets.MYBLOG_PROD_FINE_GRAINED_PAT }}
           RELEASE_PLAN: ${{ inputs.release_plan }}
-        run: node scripts/publish-release.cjs
+        run: node scripts/publish-prod-review.cjs
