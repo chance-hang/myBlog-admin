@@ -154,7 +154,7 @@
       <aside class="phase-c-zone phase-c-review"><h2>2. 人工验收与计划</h2><label>Prod review 预览 URL<input id="phase-c-test-url" type="url" placeholder="本地或受控 review 预览地址"></label><label>已验收 review commit SHA<input id="phase-c-test-sha" type="text" placeholder="40 位 SHA"></label><label>操作员标识<input id="phase-c-operator" type="text" placeholder="GitHub 用户名或审批标识"></label><label class="phase-c-toggle"><input id="phase-c-confirmed" type="checkbox"> 我已完成 Prod review 页面验收</label><button type="button" class="primary" id="phase-c-plan" disabled>生成 release plan</button><label>复核后的 release plan<textarea id="phase-c-output" rows="12" readonly></textarea></label><h2>3. 受控提交</h2><p class="muted">此 token 仅用于触发本仓库 workflow，不是 Prod PAT，不会持久化。</p><label>操作员 workflow token<input id="phase-c-dispatch-token" type="password" autocomplete="off"></label><button type="button" class="primary" id="phase-c-dispatch" disabled>提交受控发布会话</button></aside>
     </div>
   </section>
-  <script src="./admin.js"></script>
-  <script src="./phase-c.js"></script>
+  <script src="./admin.js?v=prod-only-20260914-2"></script>
+  <script src="./phase-c.js?v=prod-only-20260914-2"></script>
 </body>
 </html>
