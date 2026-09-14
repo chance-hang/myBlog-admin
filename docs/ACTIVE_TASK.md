@@ -1,10 +1,16 @@
 # ACTIVE TASK — myBlog Admin
 
-最后更新：2026-09-11（Online Release Integration，Awaiting ChatGPT Review）
+最后更新：2026-09-14（Prod-only 内容发布迁移，Awaiting ChatGPT Review）
 
 ## Status
 
-`Awaiting ChatGPT Review`（myBlog Admin Online Release Integration）
+`Awaiting ChatGPT Review`（Prod-only 内容发布迁移）
+
+当前工作分支：`review/prod-only-content-target`
+
+当前提交：`a722b0a`
+
+本轮已将内容 review 目标切换为 `myBlog-prod` 的 `review/admin-content`，并通过 `scripts/publish-prod-review.cjs` 受控提升到 `myBlog-prod/main`；已退休的 Test 仓库不再作为执行入口。
 
 Review 对象：
 

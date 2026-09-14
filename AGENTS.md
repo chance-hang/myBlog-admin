@@ -7,11 +7,11 @@
 - 编辑文章、短记、专题
 - Markdown 预览
 - 上传博客图片
-- 将内容先发布到 `myBlog-test`
-- 用户核对后，再把批准的内容提升到 `myBlog-prod`
+- 将内容写入从 `myBlog-prod/main` 创建的 `review/admin-content` 分支
+- 用户核对后，再把批准的内容提升到 `myBlog-prod/main`
 
 ## 与前台代码的边界
-- `myBlog-test`：前台代码常规开发与验收。
+- `myBlog-prod` 的 `review/*`：前台代码与内容的待验收来源；不再依赖 Test 仓库。
 - `myBlog-prod`：正式前台代码发布。
 - `myBlog-admin`：内容维护和内容发布工具自身的开发。
 
@@ -31,8 +31,8 @@ Admin 自身代码如果要改，也应在本仓库独立开发、Review、验�
 - 不因为开发方便而增加第三方后端或外部数据传输，除非用户明确授权。
 
 ## 内容发布安全
-- 默认先写 Test，不直接把新内容首次发布到 Prod。
-- Prod 提升必须有明确的用户确认动作。
+- 默认先写 Prod 的 review 分支，不直接写 Prod `main`。
+- Prod `main` 提升必须有明确的用户确认动作和可审计发布计划。
 - 提升内容时只处理内容协议明确允许的文件，不同步前台业务代码。
 - 不允许内容提升覆盖 Prod 的 HTML/CSS/JS 前台环境差异。
 
