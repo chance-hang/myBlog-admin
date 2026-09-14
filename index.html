@@ -14,8 +14,8 @@
     </div>
     <div class="header-actions">
       <div class="env-switch" aria-label="环境">
-        <button type="button" class="env-option active" aria-pressed="true" id="test-env-button">Test（草稿库）</button>
-        <button type="button" class="env-option" aria-pressed="false" id="prod-env-button">Prod（发布预览）</button>
+        <button type="button" class="env-option active" aria-pressed="true" id="test-env-button">Review（编辑区）</button>
+        <button type="button" class="env-option" aria-pressed="false" id="prod-env-button">Prod（受控发布）</button>
       </div>
       <a class="site-link" href="https://github.com/chance-hang/myBlog-prod/tree/review/admin-content" target="_blank" rel="noopener">▣ <span>查看 review 分支</span></a>
       <button type="button" class="user-block" id="user-menu-button" aria-label="当前用户">
@@ -41,11 +41,11 @@
       <div class="sidebar-bottom">
         <section class="mode-card" aria-label="当前模式">
           <div class="mode-label">当前模式</div>
-          <div class="mode-value"><span class="db-icon">◉</span><strong>Test（草稿库）</strong></div>
-          <div class="mode-note">仅写入 Prod review 分支</div>
+          <div class="mode-value"><span class="db-icon">◉</span><strong>Prod Review（待验收）</strong></div>
+          <div class="mode-note">仅写入 review/admin-content</div>
         </section>
         <details class="access-card" id="access-card">
-          <summary>连接 Test</summary>
+          <summary>连接 Prod review</summary>
           <div class="access-body">
             <label for="token-input">Prod review Fine-grained PAT</label>
             <input type="password" id="token-input" autocomplete="off" spellcheck="false" placeholder="粘贴 Prod review PAT">
@@ -67,7 +67,7 @@
         <select id="status-filter" aria-label="全部状态"><option value="all">全部状态</option><option value="editing">当前编辑</option></select>
         <select id="sort-filter" aria-label="排序"><option value="desc">按日期排序</option><option value="asc">日期正序</option></select>
       </div>
-      <div id="post-list" class="post-list"><div class="empty-state">连接 Test 后显示内容。</div></div>
+      <div id="post-list" class="post-list"><div class="empty-state">连接 Prod review 后显示内容。</div></div>
     </section>
 
     <section class="editor-column" aria-labelledby="editor-heading">
@@ -147,8 +147,8 @@
     </section>
   </main>
   <section id="prod-mode" class="prod-mode" hidden aria-labelledby="phase-c-heading">
-    <div class="prod-mode-head"><div><p class="prod-kicker">Prod · 受控发布</p><h1 id="phase-c-heading">从 Test 选择性提升内容</h1><p>浏览器不接触 Prod PAT；最终写入只由 GitHub Actions 在 Environment approval 后执行。</p></div><button type="button" class="secondary-action" id="back-to-test">返回 Test 工作台</button></div>
-    <ol class="phase-c-steps"><li>读取 Test 内容</li><li>读取 Prod 基线</li><li>选择差异</li><li>记录 Test 验收</li><li>生成计划</li><li>提交受控会话</li></ol>
+    <div class="prod-mode-head"><div><p class="prod-kicker">Prod · 受控发布</p><h1 id="phase-c-heading">从 Prod review 提升到 Prod main</h1><p>浏览器不接触 Prod PAT；最终写入只由 GitHub Actions 在 Environment approval 后执行。</p></div><button type="button" class="secondary-action" id="back-to-test">返回 Review 工作台</button></div>
+    <ol class="phase-c-steps"><li>读取 Prod review 内容</li><li>读取 Prod main 基线</li><li>选择差异</li><li>记录 review 验收</li><li>生成计划</li><li>提交受控会话</li></ol>
     <div class="phase-c-grid">
       <section class="phase-c-zone"><h2>1. 基线与差异</h2><p class="muted">先在 Prod review 工作台读取并校验 content.json，再读取 Prod main 基线。</p><button type="button" class="primary" id="phase-c-read">读取 Prod 基线</button><p id="phase-c-msg" role="status" aria-live="polite">请先完成 Prod review 内容读取。</p><p class="baseline-inline">Prod main：<code id="phase-c-prod-sha">尚未读取</code></p><label class="phase-c-toggle"><input id="phase-c-diff-only" type="checkbox"> 仅显示有差异内容</label><div id="phase-c-selection" class="phase-c-selection"><p class="empty-state">读取 Prod main 基线后显示可选择内容。</p></div></section>
       <aside class="phase-c-zone phase-c-review"><h2>2. 人工验收与计划</h2><label>Prod review 预览 URL<input id="phase-c-test-url" type="url" placeholder="本地或受控 review 预览地址"></label><label>已验收 review commit SHA<input id="phase-c-test-sha" type="text" placeholder="40 位 SHA"></label><label>操作员标识<input id="phase-c-operator" type="text" placeholder="GitHub 用户名或审批标识"></label><label class="phase-c-toggle"><input id="phase-c-confirmed" type="checkbox"> 我已完成 Prod review 页面验收</label><button type="button" class="primary" id="phase-c-plan" disabled>生成 release plan</button><label>复核后的 release plan<textarea id="phase-c-output" rows="12" readonly></textarea></label><h2>3. 受控提交</h2><p class="muted">此 token 仅用于触发本仓库 workflow，不是 Prod PAT，不会持久化。</p><label>操作员 workflow token<input id="phase-c-dispatch-token" type="password" autocomplete="off"></label><button type="button" class="primary" id="phase-c-dispatch" disabled>提交受控发布会话</button></aside>
